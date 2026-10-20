@@ -4,13 +4,22 @@
 contains machine-checkable **exact rational certificates** that zero-error quantum algorithms with
 max{n−k, l} − 1 queries exist. With the known lower bound of Ambainis, Iraids and Nagaj
 (2017, Thm. 5) this settles their exact quantum query complexity, in each case agreeing with
-their Conjecture 1. Checking a certificate needs only Python:
+their Conjecture 1.
+
+[![verify certificates](https://github.com/exact-query-certificates/exact-query-certificates/actions/workflows/verify.yml/badge.svg)](https://github.com/exact-query-certificates/exact-query-certificates/actions/workflows/verify.yml)
+
+**Check it yourself** — no need to trust this repository, only a ~100-line checker
+(details and a line-by-line map of what is checked: [VERIFYING.md](VERIFYING.md)):
 
 ```bash
-python certificates/verify_certificate.py certificates/EXACT_1_5_n7_T5.json
+git clone https://github.com/exact-query-certificates/exact-query-certificates && cd exact-query-certificates
+pip install python-flint          # needed by independent_check.py; verify_certificate.py needs nothing
+python certificates/independent_check.py certificates/EXACT_1_5_n7_T5.json  # ~1 s
+python verify_all.py --quick                                              # all n <= 8, two independent checkers
+python tests/test_verifier_rejects.py                                     # both reject 33 broken certificates
 ```
 
-(~10 s with `pip install python-flint`, ~40 s with the standard library only; n = 9 certificates take much longer.)
+Or just open the **Actions** tab: GitHub's servers re-run all of this on every push.
 
 *Status: not peer reviewed. Author: Anonymous. The search, the certificates and
 the code were produced with substantial help from an AI assistant (Claude, by Anthropic); every
@@ -41,7 +50,7 @@ For d ≥ 4 all other cases were open as far as we could find (see [Prior work](
 | 9 | {2, 6} | {3, 7} | **6** | 9 | open |
 | 9 | {2, 7} | – | **6** | 9 | open |
 | 9 | {1, 5} | {4, 8} | **7** | 9 | open |
-| 9 | {1, 6} | {3, 8} | **7** | 9 | open *(standalone check pending)* |
+| 9 | {1, 6} | {3, 8} | **7** | 9 | open |
 | 9 | {1, 7} | {2, 8} | **7** | 9 | open |
 
 "Equivalent" uses EXACT<sub>k,l</sub><sup>n</sup>(x) = EXACT<sub>n−l,n−k</sub><sup>n</sup>(x̄).
@@ -88,11 +97,15 @@ complement symmetry, fuzzed the exact PSD routine against a characteristic-polyn
 matrices, 0 mismatches), re-verified the n = 7 certificate with its own independently written checker,
 re-ran the verifier on two n = 8 certificates, and confirmed that 31 adversarially tampered
 certificates (other functions, fewer queries, sum-preserving perturbations of 10⁻¹² to 10⁻⁹) are
-all rejected. The verifier now also prints the AIN lower bound and the conclusion Q<sub>E</sub> = T.
+all rejected. Following that review there are now **two checkers that share no code**:
+`certificates/verify_certificate.py` (standard library only, PSD by exact elimination) and
+`certificates/independent_check.py` (python-flint, PSD by the signs of the exact characteristic
+polynomial), and the tamper test ships as `tests/test_verifier_rejects.py`. The first checker also
+prints the AIN lower bound and the conclusion Q<sub>E</sub> = T.
 
-Verification time: n = 7 about 10 s, n = 8 one to three minutes, n = 9 much longer (the checker is
-O(T·n·4<sup>n</sup>) pure Python). The n = 9 certificates were verified by our own runs. SHA-256 hashes
-of all certificate files are in [certificates/SHA256SUMS](certificates/SHA256SUMS).
+Verification time with the independent checker: n = 7 about 1 s, n = 8 about 10 s, n = 9 four to
+six minutes each. The first checker is pure Python and much slower for n = 9 (hours). SHA-256 hashes
+of the certificates and checkers are in [certificates/SHA256SUMS](certificates/SHA256SUMS).
 
 ## How the certificates were found
 

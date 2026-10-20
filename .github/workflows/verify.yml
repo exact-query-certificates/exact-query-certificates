@@ -1,0 +1,44 @@
+# Re-checks every certificate on GitHub's servers. Logs are public: open the "Actions" tab.
+name: verify certificates
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Also run the slow pure-Python checker on the n = 9 certificates (several hours)"
+        type: boolean
+        default: false
+
+jobs:
+  checkers-reject-broken-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install python-flint==0.9.0
+      - name: 33 deliberately broken certificates must all be rejected, the original accepted
+        run: python tests/test_verifier_rejects.py
+
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        cert: [EXACT_1_5_n7_T5, EXACT_2_6_n8_T5, EXACT_1_5_n8_T6, EXACT_1_6_n8_T6, EXACT_2_6_n9_T6, EXACT_2_7_n9_T6, EXACT_1_5_n9_T7, EXACT_1_6_n9_T7, EXACT_1_7_n9_T7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install python-flint==0.9.0
+      - name: files match the published SHA-256 hashes
+        run: cd certificates && sha256sum -c SHA256SUMS
+      - name: independent checker (python-flint, characteristic-polynomial PSD test)
+        run: python certificates/independent_check.py certificates/${{ matrix.cert }}.json
+      - name: first checker (verify_certificate.py, exact symmetric-elimination PSD test)
+        if: ${{ !contains(matrix.cert, '_n9_') || inputs.full }}
+        run: python certificates/verify_certificate.py certificates/${{ matrix.cert }}.json
