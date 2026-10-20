@@ -4,6 +4,7 @@ message: "If you use these certificates, please cite this repository."
 type: dataset
 authors:
   - name: Anonymous
+doi: "10.5281/zenodo.23509172"
 repository-code: "https://github.com/exact-query-certificates/exact-query-certificates"
 license: MIT
 date-released: 2026-10-20

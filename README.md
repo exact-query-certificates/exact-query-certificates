@@ -7,6 +7,7 @@ max{n−k, l} − 1 queries exist. With the known lower bound of Ambainis, Iraid
 their Conjecture 1.
 
 [![verify certificates](https://github.com/exact-query-certificates/exact-query-certificates/actions/workflows/verify.yml/badge.svg)](https://github.com/exact-query-certificates/exact-query-certificates/actions/workflows/verify.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23509172.svg)](https://doi.org/10.5281/zenodo.23509172)
 
 **Check it yourself** — no need to trust this repository, only a ~100-line checker
 (details and a line-by-line map of what is checked: [VERIFYING.md](VERIFYING.md)):
