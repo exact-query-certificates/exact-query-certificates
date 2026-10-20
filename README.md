@@ -19,7 +19,9 @@ python verify_all.py --quick                                              # all 
 python tests/test_verifier_rejects.py                                     # both reject 33 broken certificates
 ```
 
-Or just open the **Actions** tab: GitHub's servers re-run all of this on every push.
+Or, with nothing installed: open the **Actions** tab (GitHub's servers re-run all of this on every push), or
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/exact-query-certificates/exact-query-certificates/blob/main/verify.ipynb)
+to run the checks in your browser.
 
 *Status: not peer reviewed. Author: Anonymous. The search, the certificates and
 the code were produced with substantial help from an AI assistant (Claude, by Anthropic); every

@@ -16,6 +16,10 @@ Open the **Actions** tab of this repository. On every push, GitHub's servers:
   workflow manually with "full" ticked to include them);
 - run the tamper test: 33 deliberately broken certificates, all of which must be rejected.
 
+## Option 1b: run it in your browser
+
+[Open `verify.ipynb` in Google Colab](https://colab.research.google.com/github/exact-query-certificates/exact-query-certificates/blob/main/verify.ipynb) and choose Runtime → Run all.
+
 ## Option 2: run it yourself (one command)
 
 ```bash
