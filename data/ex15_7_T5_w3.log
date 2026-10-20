@@ -1,0 +1,8 @@
+== n=7 acc=[1, 5] T=5 w=3 R=12 seed=2
+  adam 0: best max-err 6.547e-01  [1s]
+  lbfgs 0: best max-err 1.387e-02  [40s]
+  lbfgs 10: best max-err 1.499e-06  [341s]
+  lbfgs 20: best max-err 9.133e-10  [776s]
+phase1 sorted max-errs: [6.31e-11 6.43e-11 6.81e-11 6.88e-11 6.90e-11 6.99e-11 8.69e-11 9.96e-11
+ 1.28e-10 1.39e-10 1.63e-10 2.53e-10]
+restart 8 (phase1 6.31e-11) -> LM 5 its, tail [4.1e-09 8.3e-12 5.3e-16 4.5e-22 5.4e-29] -> verified max-err 0.00e+00, unit 8.0e-14  [1381s]

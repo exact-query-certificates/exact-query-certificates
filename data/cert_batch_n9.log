@@ -1,0 +1,70 @@
+=== EXACT_2_6_n9_T6  00:48:35
+[155s] built: nS=125 nP=355 NV=2255
+[308s] numeric: status=optimal margin lambda=1.155e-01 eq rank 2056/4246 free dims 199
+[308s] exact rref rank 2056, free 199
+[360s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[1981s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_2_6_n9_T6.json
+CERTIFICATE VALID: exact 6-query algorithm for f(x)=[|x| in [2, 6]], n=9
+=== EXACT_2_7_n9_T6  01:48:26
+[46s] built: nS=125 nP=355 NV=2255
+[114s] numeric: status=optimal margin lambda=1.265e-01 eq rank 2052/4246 free dims 203
+[114s] exact rref rank 2052, free 203
+[146s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[1742s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_2_7_n9_T6.json
+CERTIFICATE VALID: exact 6-query algorithm for f(x)=[|x| in [2, 7]], n=9
+=== EXACT_1_5_n9_T7  02:44:02
+[48s] built: nS=125 nP=355 NV=2610
+[141s] numeric: status=optimal margin lambda=1.019e-01 eq rank 2142/4236 free dims 468
+[141s] exact rref rank 2142, free 468
+[185s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=6: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[3082s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_1_5_n9_T7.json
+CERTIFICATE VALID: exact 7-query algorithm for f(x)=[|x| in [1, 5]], n=9
+=== EXACT_1_6_n9_T7  04:23:55
+[49s] built: nS=125 nP=355 NV=2610
+[142s] numeric: status=optimal margin lambda=1.021e-01 eq rank 2141/4236 free dims 469
+[143s] exact rref rank 2141, free 469
+[186s] reduced blocks exactly PD (+ kernel equalities): False
+   FAIL ('M0_1_k0', 10, 2, False)
+NOT CERTIFIED: exact block check failed
+=== EXACT_1_7_n9_T7  04:27:05
+[49s] built: nS=125 nP=355 NV=2610
+[142s] numeric: status=optimal margin lambda=1.028e-01 eq rank 2138/4236 free dims 472
+[142s] exact rref rank 2138, free 472
+[185s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=6: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[3448s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_1_7_n9_T7.json
+CERTIFICATE VALID: exact 7-query algorithm for f(x)=[|x| in [1, 7]], n=9
+=== batch done 06:19:05

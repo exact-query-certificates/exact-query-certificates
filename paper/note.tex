@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\QE}{Q_E}
+\newcommand{\EX}[3]{\mathrm{EXACT}_{#1,#2}^{#3}}
+\title{Rational certificates for the exact quantum query complexity of\\ nine open cases of $\EX{k}{l}{n}$}
+\author{Anonymous\thanks{The search, certificates and code were produced with substantial
+assistance from an AI system (Claude, Anthropic). All claims are backed by certificates that can be
+verified independently: \url{https://github.com/{ORG}/{REPO}}.}}
+\date{October 2026 --- preprint, not peer reviewed}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Ambainis, Iraids and Nagaj conjectured that $\QE(\EX{k}{l}{n})=\max\{n-k,l\}-1$ whenever $l-k\ge 2$,
+where $\EX{k}{l}{n}(x)=1$ iff $|x|\in\{k,l\}$. The conjecture is known for $l-k\in\{2,3\}$, for $k=0$,
+and for $(k,l)=(1,n-1)$. We give exact rational certificates, in the semidefinite characterisation of
+Barnum, Saks and Szegedy, for nine further instances with $l-k\ge 4$ and $n\le 9$, which together with the
+known lower bound determine $\QE$ in each case and confirm the conjecture there. The certificates are
+found by a symmetry- and facially-reduced SDP followed by exact rounding, and are checked by a short
+standalone program. We also report numerical evidence for all $17$ open instances with $l-k\ge4$ and
+$n\le 10$.
+\end{abstract}
+
+\section{Background}
+For $f:\{0,1\}^n\to\{0,1\}$ we use the model of~\cite{AIN}: state space
+$\mathcal H_Q\otimes\mathcal H_W\otimes\mathcal H_O$ with $\mathcal H_Q=\mathrm{span}\{|0\rangle,\dots,|n\rangle\}$,
+oracle $O_x|i\rangle=(-1)^{x_i}|i\rangle$ for $i\in[n]$, $O_x|0\rangle=|0\rangle$, an algorithm
+$U_TO_x\cdots O_xU_0$ followed by a measurement whose outcome is read from $\mathcal H_O$. $\QE(f)$ is the
+least $T$ for which some algorithm outputs $f(x)$ with certainty for every $x$.
+Ambainis, Iraids and Nagaj~\cite{AIN} proved
+\begin{equation}\label{eq:bounds}
+\max\{n-k,l\}-1\;\le\;\QE(\EX{k}{l}{n})\;\le\;\max\{n-k,l\}+1,
+\end{equation}
+the lower bound by the polynomial method (their Theorem~5) and the upper bound for all $d\ge1$ (their
+Theorem~3), and conjectured (Conjecture~1) that the lower bound is tight for $d=l-k\ge2$, proving it for
+$d\in\{2,3\}$. Yao and Ye~\cite{YY} proved it for $k=0$ and for
+$(k,l)=(1,n-1)$. Wu et al.~\cite{Wu} reported numerical values (no proofs) for even $n$ with $k,l$
+symmetric about $n/2$, including $\QE(\EX{2}{6}{8})=5$. Since $\EX{k}{l}{n}(x)=\EX{n-l}{n-k}{n}(\bar x)$ we list
+instances with $k\le n-l$.
+
+\paragraph{The BSS characterisation.} Let $E_0=J$ (all-ones) and $E_i[x,y]=(-1)^{x_i+y_i}$.
+\begin{lemma}[\cite{BSS}]\label{lem:bss}
+There is an exact $T$-query algorithm for $f$ iff there exist real positive semidefinite matrices
+$M_t^{(i)}$ ($0\le t<T$, $0\le i\le n$) and $\Gamma^0,\Gamma^1$, indexed by $\{0,1\}^n$, with
+$\sum_i M_0^{(i)}=J$; $\sum_i M_t^{(i)}=\sum_i E_i\circ M_{t-1}^{(i)}$ for $1\le t<T$;
+$\Gamma^0+\Gamma^1=\sum_iE_i\circ M_{T-1}^{(i)}$; and $\Gamma^b[x,x]=0$ whenever $f(x)\ne b$.
+\end{lemma}
+\begin{proof}[Proof of the direction used]
+Write $M_t^{(i)}[x,y]=\langle v_{t,i}(x),v_{t,i}(y)\rangle$ and $\Gamma^b[x,y]=\langle w_b(x),w_b(y)\rangle$
+with real vectors in a common space $\mathbb R^r$. Put
+\[\psi_t(x)=\sum_i|i\rangle v_{t,i}(x),\qquad \varphi_t(x)=O_x\psi_t(x)=\sum_i(-1)^{x_i}|i\rangle v_{t,i}(x)\quad(x_0:=0).\]
+The first condition says that the unit vectors $\psi_0(x)$ have all pairwise inner products $1$,
+so they coincide and the initial state is independent of $x$; the others say that $\{\varphi_{t-1}(x)\}_x$ and
+$\{\psi_t(x)\}_x$ have equal Gram matrices, hence are related by an isometry between their spans, which
+extends to a unitary $U_t$; and likewise $\varphi_{T-1}(x)\mapsto|0\rangle w_0(x)+|1\rangle w_1(x)$.
+Measuring the first register of the final state outputs $b$ with probability $\Gamma^b[x,x]$, which is
+$0$ for $b\ne f(x)$.
+\end{proof}
+
+\begin{remark}
+The phase oracle with a null query and the standard XOR oracle simulate each other one query for one
+(map $|0\rangle\mapsto|1\rangle|+\rangle$, $|i\rangle\mapsto|i\rangle|-\rangle$; conversely conjugate the XOR
+oracle by $H$ on its target), so the results below hold in either model.
+\end{remark}
+
+\section{Results}
+\begin{theorem}\label{thm:main}
+$\QE(\EX{k}{l}{n})=\max\{n-k,l\}-1$ for the following $(n,\{k,l\})$ (and their complements):
+\[\begin{array}{c|ccccccccc}
+n & 7 & 8 & 8 & 8 & 9 & 9 & 9 & 9 & 9\\\hline
+\{k,l\} & \{1,5\} & \{1,5\} & \{1,6\} & \{2,6\} & \{2,6\} & \{2,7\} & \{1,5\} & \{1,6\} & \{1,7\}\\
+\QE & 5 & 6 & 6 & 5 & 6 & 6 & 7 & 7 & 7
+\end{array}\]
+\end{theorem}
+\begin{proof}
+The lower bound is~\eqref{eq:bounds}. For the upper bound, the certificate file
+\begin{center}\texttt{certificates/EXACT\_$k$\_$l$\_n$n$\_T$T$.json}\end{center}
+lists rational matrices satisfying the conditions of Lemma~\ref{lem:bss} with $T=\max\{n-k,l\}-1$. The
+program
+\begin{center}\texttt{certificates/verify\_certificate.py}\end{center}
+reconstructs all $2^n\times2^n$ matrices and checks every condition in exact rational arithmetic,
+PSD-ness by symmetric Gaussian elimination, and prints the lower bound for comparison.
+\end{proof}
+Checking takes about $10$\,s for $n=7$, minutes for $n=8$, and much longer for $n=9$ (the checker is
+$O(T\,n\,4^n)$ pure Python); SHA-256 hashes of all files are distributed with them. An independent
+adversarial review (by a separate AI agent, not a human referee) re-derived Lemma~\ref{lem:bss}, wrote a
+second checker using a characteristic-polynomial PSD test, and confirmed that $31$ tampered certificates
+are rejected.
+
+The matrices are stored compactly. $M_t^{(0)},\Gamma^b$ are $S_n$-invariant: an entry $A[x,y]$ depends only on the
+unordered pair $\{|x|,|y|\}$ and on $|x\wedge y|$. $M_t^{(1)}$ is invariant under permutations fixing coordinate~1, and
+$M_t^{(i)}[x,y]=M_t^{(1)}[\sigma_ix,\sigma_iy]$ with $\sigma_i$ the transposition $(1\,i)$. These are not extra
+assumptions on the verifier's side: it simply rebuilds the full matrices this way and checks them.
+
+\section{How the certificates were found}
+None of this section is needed to check Theorem~\ref{thm:main}.
+
+\emph{Symmetry.} Averaging a feasible point over $S_n$ (acting on inputs and on query indices $i\ge1$)
+preserves feasibility, so we may assume the invariance above. Invariant matrices block-diagonalise along
+the $(n-j,j)$ isotypic components of $\mathbb R^{\{0,1\}^n}$; we use integer bases built from a Specht-type
+lowest-weight vector on weight-$j$ strings and the raising operator. For $n=7$ the blocks have sizes
+$8,6,4,2$ ($S_7$) and $14,10,6,2$ ($S_6$), versus $128$.
+
+\emph{Facial reduction.} Let $V_t=\mathrm{span}\{\chi_S:|S|\le t\}$. After $t$ queries the amplitudes are
+polynomials in $x$ of degree $\le t$, and for an exact algorithm the final amplitudes on output $b$ lie in
+$W_b=\{h\in V_T:h|_{f^{-1}(1-b)}=0\}$. A fixed unitary preserves the span of amplitude functions and the
+oracle multiplies the register-$i$ part by $\chi_i$, so the register-$i$ part before query $t+1$ lies in
+$F_t^{(i)}=\chi_iZ_{t+1}\cap V_t$, where $Z_T=W_0+W_1$ and $Z_t=\sum_iF_t^{(i)}$. Hence
+$\mathrm{range}(M_t^{(i)})\subseteq F_t^{(i)}$ and $\mathrm{range}(\Gamma^b)\subseteq W_b$. Without the
+backward part, rounding failed already for $\mathrm{PARITY}_4$.
+
+\emph{Rounding.} We maximise the least eigenvalue of the face-reduced blocks (in normalised coordinates),
+round the free variables of the exact RREF of all linear constraints to rationals with denominator
+$2^{30}$ or $2^{50}$, solve for the pivot variables exactly, and verify positive definiteness on the
+faces by Sylvester's criterion before the full check. Margins were $0.10$--$0.17$.
+
+\emph{Cross-checks.} For $(7,\{1,5\})$ a direct search over unitaries (workspace dimension $3$, total
+dimension $48$), polished by Levenberg--Marquardt, gives an explicit algorithm with worst-case error
+$6\cdot10^{-31}$; the certificate itself, converted to unitaries via Lemma~\ref{lem:bss}, has worst-case
+error $9\cdot10^{-16}$. The BSS SDP gives optimal error $0.041$ with $4$ queries.
+
+\section{Numerical evidence}
+For all $47$ instances with $l-k\ge4$, $6\le n\le10$, $k\le n-l$, we solved the symmetry-reduced SDP for the
+optimal worst-case error $\varepsilon_T$. For each of the $17$ open instances,
+$\varepsilon_{T^*-1}\ge2.9\cdot10^{-4}$ and $\varepsilon_{T^*}\le1.0\cdot10^{-6}$ with
+$T^*=\max\{n-k,l\}-1$. At $n=10$ the solver accuracy ($\sim10^{-6}$) approaches the smallest positive
+values seen ($1.9\cdot10^{-6}$ for the proven instance $(10,\{0,10\})$), so this is weak evidence there.
+
+\begin{thebibliography}{9}
+\bibitem{AIN} A.~Ambainis, J.~Iraids, D.~Nagaj. Exact quantum query complexity of $\EX{k}{l}{n}$.
+SOFSEM 2017. arXiv:1608.02374.
+\bibitem{BSS} H.~Barnum, M.~Saks, M.~Szegedy. Quantum query complexity and semidefinite programming.
+CCC 2003.
+\bibitem{YY} P.~Yao, Z.~Ye. On the exact quantum query complexity of $\mathrm{MOD}_m^n$ and $\EX{k}{l}{n}$.
+arXiv:2303.10935.
+\bibitem{Wu} Z.~Wu, S.-Y.~Hou, C.~Zhang, L.~Li, B.~Zeng. Variational learning algorithms for quantum
+query complexity. arXiv:2205.07449.
+\bibitem{MJM} A.~Montanaro, R.~Jozsa, G.~Mitchison. On exact quantum query complexity. Algorithmica 71
+(2015). arXiv:1111.0475.
+\bibitem{Xu} G.~Xu et al. Exact quantum query complexity of the five-bit symmetric Boolean function
+$\mathrm{EXACT}^5_{3,4}$. arXiv:2610.24518.
+\end{thebibliography}
+\end{document}

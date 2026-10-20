@@ -1,0 +1,12 @@
+C:\claudeprojects\quantum\qkit\sdp.py:32: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=solver, verbose=verbose)
+PARITY_4       T=1 (Q_E=2): SDP optimal worst-case error 4.999e-01  [optimal_inaccurate, 0.6s]
+PARITY_4       T=2 (Q_E=2): SDP optimal worst-case error 1.365e-07  [optimal, 0.6s]
+EXACT_2^4      T=1 (Q_E=2): SDP optimal worst-case error 4.284e-01  [optimal_inaccurate, 0.6s]
+EXACT_2^4      T=2 (Q_E=2): SDP optimal worst-case error 2.754e-08  [optimal, 0.7s]
+EXACT_{0,4}^4  T=2 (Q_E=3): SDP optimal worst-case error 1.992e-02  [optimal_inaccurate, 2.0s]
+EXACT_{0,4}^4  T=3 (Q_E=3): SDP optimal worst-case error 1.981e-08  [optimal, 1.6s]
+OR_3           T=2 (Q_E=3): SDP optimal worst-case error 1.996e-02  [optimal_inaccurate, 0.3s]
+OR_3           T=3 (Q_E=3): SDP optimal worst-case error 9.774e-09  [optimal, 0.2s]
+EXACT_{1,3}^5  T=2 (Q_E=3): SDP optimal worst-case error 4.832e-01  [optimal_inaccurate, 20.2s]
+EXACT_{1,3}^5  T=3 (Q_E=3): SDP optimal worst-case error 8.257e-08  [optimal, 20.9s]

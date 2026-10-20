@@ -1,0 +1,45 @@
+=== EXACT_1_5_n8_T6  00:48:35
+[23s] built: nS=95 nP=260 NV=1655
+[152s] numeric: status=optimal margin lambda=1.157e-01 eq rank 1405/2795 free dims 250
+[152s] exact rref rank 1405, free 250
+[202s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[409s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_1_5_n8_T6.json
+CERTIFICATE VALID: exact 6-query algorithm for f(x)=[|x| in [1, 5]], n=8
+=== EXACT_1_6_n8_T6  00:58:10
+[7s] built: nS=95 nP=260 NV=1655
+[36s] numeric: status=optimal margin lambda=1.184e-01 eq rank 1403/2795 free dims 252
+[36s] exact rref rank 1403, free 252
+[49s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=5: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[213s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_1_6_n8_T6.json
+CERTIFICATE VALID: exact 6-query algorithm for f(x)=[|x| in [1, 6]], n=8
+=== EXACT_2_6_n8_T5  01:04:28
+[7s] built: nS=95 nP=260 NV=1395
+[26s] numeric: status=optimal margin lambda=1.694e-01 eq rank 1318/2803 free dims 77
+[26s] exact rref rank 1318, free 77
+[35s] reduced blocks exactly PD (+ kernel equalities): True
+   t=0: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=1: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=2: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=3: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   t=4: sum_i M^(i) == previous Gram: True; M^(0), M^(1) PSD: True
+   final: Gamma0+Gamma1 == final Gram: True; PSD: True; zero error on every input: True
+[87s] independent full-matrix BSS check: True
+wrote C:/claudeprojects/quantum/certificates/EXACT_2_6_n8_T5.json
+CERTIFICATE VALID: exact 5-query algorithm for f(x)=[|x| in [2, 6]], n=8
+=== batch done 01:06:49

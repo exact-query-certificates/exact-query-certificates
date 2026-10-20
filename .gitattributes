@@ -1,0 +1,2 @@
+# store every file byte-for-byte (certificate hashes in certificates/SHA256SUMS must survive checkout)
+* -text
