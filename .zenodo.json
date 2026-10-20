@@ -1,0 +1,44 @@
+{
+ "title": "Rational certificates for the exact quantum query complexity of nine open cases of EXACT_{k,l}^n (Ambainis-Iraids-Nagaj conjecture)",
+ "upload_type": "dataset",
+ "creators": [
+  {
+   "name": "Anonymous"
+  }
+ ],
+ "description": "<p>Exact rational Barnum-Saks-Szegedy SDP certificates showing that the exact quantum query complexity of EXACT_{k,l}^n (f(x)=1 iff |x| in {k,l}) equals max{n-k,l}-1 for n=7 {1,5}; n=8 {1,5},{1,6},{2,6}; n=9 {2,6},{2,7},{1,5},{1,6},{1,7}. With the lower bound of Ambainis, Iraids and Nagaj (2017) this settles these cases of their Conjecture 1 (l-k&gt;=2), which were open after Yao and Ye (2023).</p><p>Includes two independently written standalone checkers (exact arithmetic), a tamper test, the generating code, an explicit 5-query algorithm for n=7, SDP numerics for all open l-k&gt;=4 instances with n&lt;=10, and a 3-page note.</p><p>Not peer reviewed. Produced with substantial help from an AI assistant (Claude, Anthropic); every claim is backed by a certificate that can be checked independently.</p>",
+ "license": "MIT",
+ "keywords": [
+  "exact quantum query complexity",
+  "EXACT_{k,l}^n",
+  "Ambainis-Iraids-Nagaj conjecture",
+  "Barnum-Saks-Szegedy",
+  "semidefinite programming",
+  "symmetric Boolean functions",
+  "rational certificate",
+  "quantum algorithms"
+ ],
+ "related_identifiers": [
+  {
+   "identifier": "arXiv:1608.02374",
+   "relation": "references",
+   "scheme": "arxiv"
+  },
+  {
+   "identifier": "arXiv:2303.10935",
+   "relation": "references",
+   "scheme": "arxiv"
+  },
+  {
+   "identifier": "arXiv:2205.07449",
+   "relation": "references",
+   "scheme": "arxiv"
+  },
+  {
+   "identifier": "arXiv:2610.24518",
+   "relation": "references",
+   "scheme": "arxiv"
+  }
+ ],
+ "version": "1.0.0"
+}
